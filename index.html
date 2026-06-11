@@ -239,8 +239,8 @@ h2{
   font-family:var(--disp); font-weight:400; text-transform:uppercase;
   font-size:clamp(34px,5.4vw,72px); line-height:.95; letter-spacing:-.015em;
 }
-.reveal{opacity:0; transform:translateY(36px); transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.reveal.in{opacity:1; transform:none}
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .55s var(--ease),transform .55s var(--ease); will-change:opacity,transform}
+.reveal.in{opacity:1; transform:none; will-change:auto}
 
 /* ---------- about (paper) ---------- */
 .about{background:var(--paper); color:var(--ink); position:relative}
@@ -545,7 +545,7 @@ footer a:hover{color:var(--lime)}
     <div class="kicker reveal"><span class="num">01</span> About</div>
     <div class="about-grid">
       <div>
-        <h2 class="reveal">Code is a<br><span class="hl">people business<svg viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M3 11 C 40 4, 80 13, 120 7 S 180 10, 197 6"/></svg></span>.</h2>
+        <h2 class="reveal">Code is a<br><span class="hl">people business.<svg viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M3 11 C 40 4, 80 13, 120 7 S 180 10, 197 6"/></svg></span></h2>
         <p class="reveal">I'm Prashrijan — friends call me Prash. I grew up in Nepal and now live on Sydney's Northern Beaches, where I build web applications that real people actually use. The flag pin on my lapel? Always Nepal.</p>
         <p class="reveal">My happy place is the full stack: <b>React and Next.js up front, Node and Express behind, MongoDB underneath — and Python in the back pocket</b>. I care about the unglamorous things — clean code, scalable architecture, security that holds up — because that's what separates a demo from a product.</p>
         <p class="reveal">Quick learner, sharp curve, allergic to "that's how we've always done it."</p>
@@ -832,8 +832,8 @@ const io = new IntersectionObserver(es=>{
       if (e.target.querySelector('[data-count]') || e.target.dataset.count !== undefined) runCounters(e.target);
     }
   });
-},{threshold:.18});
-document.querySelectorAll('.reveal').forEach((el,i)=>{ el.style.transitionDelay = (i%4)*0.07+'s'; io.observe(el); });
+},{threshold:.05, rootMargin:'0px 0px 12% 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{ el.style.transitionDelay = (i%4)*0.04+'s'; io.observe(el); });
 
 /* counters */
 function runCounters(scope){
