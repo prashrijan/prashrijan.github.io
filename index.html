@@ -270,7 +270,7 @@ h2{
 }
 .flag-side{margin-top:54px; text-align:center; transform:rotate(-2.4deg)}
 #flag3d{
-  width:min(100%,320px); height:330px; margin:0 auto; cursor:pointer;
+  width:min(100%,330px); height:360px; margin:0 auto; cursor:pointer;
   touch-action:pan-y;
 }
 #flag3d canvas{display:block}
@@ -878,7 +878,7 @@ document.querySelectorAll('.mock').forEach(m=>mockIO.observe(m));
   host.appendChild(renderer.domElement);
   const scene = new THREE.Scene();
   const cam = new THREE.PerspectiveCamera(34, W/H, .1, 10);
-  cam.position.set(.18, .05, 2.6);
+  cam.position.set(-.03, .05, 2.65); // centred so the pole stays in frame
 
   const map = new THREE.CanvasTexture(tex);
   map.anisotropy = 4; map.colorSpace = THREE.SRGBColorSpace;
@@ -895,6 +895,7 @@ document.querySelectorAll('.mock').forEach(m=>mockIO.observe(m));
   flag.position.y = .04;
   group.add(flag, pole, finial);
   group.rotation.y = -.14;
+  group.position.y = -.06;
   scene.add(group);
 
   const base = geo.attributes.position.array.slice();
