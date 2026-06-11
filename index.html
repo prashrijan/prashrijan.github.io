@@ -253,6 +253,11 @@ h2{
   position:absolute; left:0; bottom:-10px; width:100%; height:16px;
   stroke:#e0531f; stroke-width:4; fill:none; stroke-linecap:round;
 }
+.about h2 .hl svg path{
+  stroke-dasharray:1; stroke-dashoffset:1;
+  transition:stroke-dashoffset 1.1s var(--ease) .4s;
+}
+.about h2.in .hl svg path{stroke-dashoffset:0}
 .about p{color:#3c3b36; margin-top:22px; max-width:54ch; font-size:clamp(16px,1.45vw,18.5px)}
 .about p b{color:var(--ink); font-weight:600}
 .about .hand-note{
@@ -546,8 +551,8 @@ footer a:hover{color:var(--lime)}
     <div class="kicker reveal"><span class="num">01</span> About</div>
     <div class="about-grid">
       <div>
-        <h2 class="reveal">Code is a<br><span class="hl">people business.<svg viewBox="0 0 200 16" preserveAspectRatio="none"><path d="M3 11 C 40 4, 80 13, 120 7 S 180 10, 197 6"/></svg></span></h2>
-        <p class="reveal">Kathmandu-born, Sydney-based. I'm Prash — I build things for the web and care a little too much about how they feel to use.</p>
+        <h2 class="reveal">Code is a<br><span class="hl">people business.<svg viewBox="0 0 200 16" preserveAspectRatio="none"><path pathLength="1" d="M3 11 C 40 4, 80 13, 120 7 S 180 10, 197 6"/></svg></span></h2>
+        <p class="reveal">I'm Prash — I build things for the web and care a little too much about how they feel to use.</p>
         <p class="reveal"><b>React and Next.js up front, Node behind, MongoDB underneath, Python in the back pocket.</b> Clean code over clever code. Shipped beats perfect.</p>
         <p class="reveal">Allergic to "that's how we've always done it."</p>
         <span class="hand-note reveal">— powered by milk chiya, not coffee</span>
