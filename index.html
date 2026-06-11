@@ -128,6 +128,11 @@ nav{
 }
 .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(198,241,53,.55)}55%{box-shadow:0 0 0 8px rgba(198,241,53,0)}}
+@media (max-width:640px){
+  .hero{padding-top:140px}
+  .hero-meta{top:88px; flex-direction:column; align-items:center; gap:10px; font-size:11px; letter-spacing:.1em; text-align:center}
+  .hero-meta .pin{flex-wrap:wrap; justify-content:center}
+}
 
 .hero-name{position:relative; text-align:center; z-index:2}
 .hero-name h1{
