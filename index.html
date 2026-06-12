@@ -79,6 +79,25 @@ body::after{
 .cursor-ring.grow{width:64px;height:64px;opacity:.9}
 @media (hover:none),(max-width:820px){.cursor-dot,.cursor-ring{display:none}}
 
+/* ---------- scroll progress ring ---------- */
+.scroll-progress{
+  position:fixed; right:18px; bottom:18px; z-index:900; width:54px; height:54px;
+  pointer-events:none; border-radius:50%;
+  background:rgba(11,12,16,.62); border:1px solid var(--line);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+.scroll-progress svg{width:100%; height:100%; transform:rotate(-90deg); display:block}
+.scroll-progress .track{fill:none; stroke:rgba(244,241,234,.14); stroke-width:3.5}
+.scroll-progress .bar{
+  fill:none; stroke:var(--lime); stroke-width:3.5; stroke-linecap:round;
+  stroke-dasharray:150.8; stroke-dashoffset:150.8;
+}
+.scroll-progress span{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--head); font-size:11.5px; font-weight:700; color:var(--txt);
+  font-variant-numeric:tabular-nums; letter-spacing:.02em;
+}
+
 /* ---------- nav ---------- */
 nav{
   position:fixed; top:18px; left:50%; transform:translateX(-50%); z-index:1000;
@@ -477,6 +496,14 @@ footer a:hover{color:var(--lime)}
 <div class="cursor-dot" aria-hidden="true"></div>
 <div class="cursor-ring" aria-hidden="true"></div>
 
+<div class="scroll-progress" aria-hidden="true">
+  <svg viewBox="0 0 56 56">
+    <circle class="track" cx="28" cy="28" r="24"/>
+    <circle class="bar" cx="28" cy="28" r="24" id="progArc"/>
+  </svg>
+  <span id="progPct">0%</span>
+</div>
+
 <nav aria-label="Main">
   <div class="logo" data-scroll="#top">PRASH<span>.</span></div>
   <div class="nav-links">
@@ -583,8 +610,8 @@ footer a:hover{color:var(--lime)}
     <div class="kicker reveal"><span class="num">02</span> Toolbox</div>
     <h2 class="reveal">A small universe<br>of tools</h2>
     <p class="stack-hint reveal">every skill is a star in here — <b>drag to spin the galaxy</b>, hover a star to identify it.</p>
-    <div id="skills3d" class="reveal" role="img" aria-label="Interactive 3D constellation of skills: React, Next.js, TypeScript, JavaScript, Tailwind CSS, Bootstrap, Node.js, Express.js, REST APIs, JWT, MongoDB, SQL, Python, Git, Vercel, Render and Chart.js">
-      <div class="sk-tip" id="skTip">17 tools · 1 developer · drag me</div>
+    <div id="skills3d" class="reveal" role="img" aria-label="Interactive 3D constellation of skills: React, Next.js, TypeScript, JavaScript, Tailwind CSS, Bootstrap, Node.js, Express.js, REST APIs, MongoDB, SQL, Python, Git and Chart.js">
+      <div class="sk-tip" id="skTip">14 tools · 1 developer · drag me</div>
     </div>
     <div class="sk-legend reveal">
       <span><i style="background:#c6f135"></i>Frontend</span>
@@ -599,7 +626,7 @@ footer a:hover{color:var(--lime)}
       </div>
       <div class="sgroup">
         <h3>Backend</h3>
-        <div class="chips"><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">RESTful APIs</span><span class="chip">JWT Auth</span></div>
+        <div class="chips"><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">RESTful APIs</span></div>
       </div>
       <div class="sgroup">
         <h3>Data &amp; Languages</h3>
@@ -607,7 +634,7 @@ footer a:hover{color:var(--lime)}
       </div>
       <div class="sgroup">
         <h3>Workflow</h3>
-        <div class="chips"><span class="chip">Git / GitHub</span><span class="chip">Render</span><span class="chip">Vercel</span><span class="chip">Chart.js</span><span class="chip">Yup</span></div>
+        <div class="chips"><span class="chip">Git / GitHub</span><span class="chip">Chart.js</span><span class="chip">Yup</span></div>
       </div>
     </div>
     <p class="stack-foot reveal">No favourites. <span>okay fine, it's React.</span></p>
@@ -781,6 +808,22 @@ document.querySelectorAll('[data-scroll]').forEach(el=>{
     else target.scrollIntoView({behavior: reduced ? 'auto' : 'smooth'});
   });
 });
+
+/* scroll progress ring */
+(function(){
+  const arc = document.getElementById('progArc'), pct = document.getElementById('progPct');
+  const C = 2*Math.PI*24;
+  arc.style.strokeDasharray = C;
+  const upd = ()=>{
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? Math.min(1, Math.max(0, scrollY/max)) : 0;
+    arc.style.strokeDashoffset = C*(1-p);
+    pct.textContent = Math.round(p*100)+'%';
+  };
+  addEventListener('scroll', upd, {passive:true});
+  addEventListener('resize', upd, {passive:true});
+  upd();
+})();
 
 /* Sydney clock */
 (function(){
@@ -1002,9 +1045,9 @@ document.querySelectorAll('.mock').forEach(m=>mockIO.observe(m));
   const CATNAME = { frontend:'Frontend', backend:'Backend', data:'Data & Languages', flow:'Workflow' };
   const SKILLS = [
     ['React.js','frontend'],['Next.js','frontend'],['TypeScript','frontend'],['JavaScript','frontend'],['Tailwind CSS','frontend'],['Bootstrap','frontend'],
-    ['Node.js','backend'],['Express.js','backend'],['REST APIs','backend'],['JWT Auth','backend'],
+    ['Node.js','backend'],['Express.js','backend'],['REST APIs','backend'],
     ['MongoDB','data'],['SQL','data'],['Python','data'],
-    ['Git / GitHub','flow'],['Vercel','flow'],['Render','flow'],['Chart.js','flow']
+    ['Git / GitHub','flow'],['Chart.js','flow']
   ];
 
   let renderer;
