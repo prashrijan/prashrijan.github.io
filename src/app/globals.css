@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens — a cinematic, premium palette.                      */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-void: #04050a;
+  --color-ink: #0a0c14;
+  --color-mist: #aab2d5;
+  --color-chalk: #f4f6ff;
+  --color-aurora: #7c5cff;
+  --color-cyan: #38e1ff;
+  --color-ember: #ff8a5c;
+  --color-gold: #e0a96d;
+
+  --font-display: var(--font-display), "Georgia", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Fira Code", monospace;
+
+  --ease-cinema: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --bg: #04050a;
+  --fg: #f4f6ff;
+  --accent: #7c5cff;
+  color-scheme: dark;
+}
+
+html[data-theme="day"] {
+  --bg: #eef1fb;
+  --fg: #0a0c14;
+  color-scheme: light;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  transition: background 1.2s var(--ease-cinema), color 1.2s var(--ease-cinema);
+}
+
+/* Lenis smooth-scroll plumbing */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Hide native scrollbar for the cinematic feel, keep it usable */
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Selection */
+::selection {
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--color-chalk);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--color-chalk) 0%,
+    var(--color-aurora) 55%,
+    var(--color-cyan) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vignette::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+html[data-theme="day"] .vignette::before {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(40, 50, 90, 0.18) 100%
+  );
+}
+
+/* Reduced-motion: respect the user, drop the cinema. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
