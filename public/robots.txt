@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://prashrijan.github.io/sitemap.xml
