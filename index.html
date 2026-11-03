@@ -446,6 +446,21 @@ h2{
   font-size:10.5px; font-family:var(--head); font-weight:600; color:#9aa0b4;
   border:1px solid rgba(255,255,255,.1); border-radius:100px; padding:4px 11px;
 }
+/* yt summariser architecture scene */
+.arch{display:grid; gap:10px; font-family:var(--head)}
+.arch .layer{display:flex; justify-content:space-between; align-items:center; gap:10px;
+  border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:10px 14px; background:rgba(255,255,255,.03)}
+.arch .layer .k{font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:#9aa0b4; font-weight:600}
+.arch .layer .v{font-size:13px; font-weight:700; color:#e7e8ee; text-align:right}
+.arch .layer.hl{border-color:rgba(198,241,53,.45); background:rgba(198,241,53,.06)}
+.arch .layer.hl .v{color:var(--lime)}
+.arch .down{justify-self:center; color:#5d6274; font-size:12px; line-height:1}
+.arch .provs{display:grid; grid-template-columns:repeat(4,1fr); gap:8px}
+.arch .provs span{font-size:11.5px; font-weight:700; text-align:center; padding:8px 4px; border-radius:9px;
+  background:rgba(123,147,255,.12); color:#b7c3ff; border:1px solid rgba(123,147,255,.25)}
+.arch .side{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.arch .side div{font-size:11.5px; color:#c5c9d8; border:1px dashed rgba(255,255,255,.14); border-radius:9px; padding:8px 10px; font-weight:600}
+.arch .side b{display:block; color:#ff8a5c; font-size:10px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:3px}
 /* video scene (chrome of the recording cropped away) */
 .mock .vid{overflow:hidden; aspect-ratio:3024/1727; background:#211912; position:relative}
 .mock .vid video{display:block; width:100%; margin-top:-7.84%}
@@ -582,6 +597,7 @@ footer a:hover{color:var(--lime)}
     <span>TypeScript <svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></span>
     <span>Next.js <svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></span>
     <span>Python <svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></span>
+    <span>FastAPI <svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></span>
     <span>Express <svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></span>
     <span>Sydney, AU <svg viewBox="0 0 24 24"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg></span>
   </div>
@@ -643,8 +659,8 @@ footer a:hover{color:var(--lime)}
     <div class="kicker reveal"><span class="num">02</span> Toolbox</div>
     <h2 class="reveal">A small universe<br>of tools</h2>
     <p class="stack-hint reveal">every skill is a star in here — <b>drag to spin the galaxy</b>, hover a star to identify it.</p>
-    <div id="skills3d" class="reveal" role="img" aria-label="Interactive 3D constellation of skills: React, Next.js, TypeScript, JavaScript, Tailwind CSS, Bootstrap, Node.js, Express.js, REST APIs, MongoDB, SQL, Python and Git">
-      <div class="sk-tip" id="skTip">13 tools · 1 developer · drag me</div>
+    <div id="skills3d" class="reveal" role="img" aria-label="Interactive 3D constellation of skills: React, Next.js, TypeScript, JavaScript, Tailwind CSS, Bootstrap, Node.js, Express.js, FastAPI, REST APIs, LLM APIs, MongoDB, PostgreSQL, SQL, Python, Git and Docker">
+      <div class="sk-tip" id="skTip">17 tools · 1 developer · drag me</div>
     </div>
     <div class="sk-legend reveal">
       <span><i style="background:#c6f135"></i>Frontend</span>
@@ -659,15 +675,15 @@ footer a:hover{color:var(--lime)}
       </div>
       <div class="sgroup">
         <h3>Backend</h3>
-        <div class="chips"><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">RESTful APIs</span></div>
+        <div class="chips"><span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">FastAPI</span><span class="chip">RESTful APIs</span><span class="chip">LLM APIs</span></div>
       </div>
       <div class="sgroup">
         <h3>Data &amp; Languages</h3>
-        <div class="chips"><span class="chip">MongoDB</span><span class="chip">SQL</span><span class="chip">Python</span></div>
+        <div class="chips"><span class="chip">MongoDB</span><span class="chip">PostgreSQL</span><span class="chip">SQL</span><span class="chip">Python</span></div>
       </div>
       <div class="sgroup">
         <h3>Workflow</h3>
-        <div class="chips"><span class="chip">Git / GitHub</span><span class="chip">Yup</span></div>
+        <div class="chips"><span class="chip">Git / GitHub</span><span class="chip">Yup</span><span class="chip">Docker</span></div>
       </div>
     </div>
     <p class="stack-foot reveal">No favourites. <span>okay fine, it's React.</span></p>
@@ -680,18 +696,56 @@ footer a:hover{color:var(--lime)}
     <div class="kicker reveal"><span class="num">03</span> Selected Work</div>
     <h2 class="reveal" style="margin-bottom:30px">Built, shipped,<br>still running</h2>
 
-    <!-- Charli's Café -->
+    <!-- YouTube Summariser AI -->
     <article class="project">
       <div class="info reveal">
         <div class="pnum">01 — 2026</div>
+        <h3>YouTube Summariser AI</h3>
+        <div class="role">Full-stack + applied AI · personal project</div>
+        <ul>
+          <li>Turns any captioned YouTube video into 10 types of AI summary — React + TypeScript up front, FastAPI behind.</li>
+          <li>Clean Architecture provider layer: Gemini, OpenAI, Anthropic or a local model, swapped behind one interface, with concurrent generation and map-reduce for long transcripts.</li>
+          <li>Transcript cleaning cut token usage by 8–12%; a TF-IDF, NER and sentiment pipeline runs alongside the LLMs.</li>
+          <li>JWT auth and rate limiting, 84 backend tests that run fully offline against a mock LLM, containerised with Docker.</li>
+        </ul>
+        <div class="tags"><span>Python</span><span>FastAPI</span><span>React</span><span>TypeScript</span><span>PostgreSQL</span><span>Docker</span><span>LLM APIs</span></div>
+        <a class="plink" href="https://github.com/prashrijan/youtube-summariser" target="_blank" rel="noopener">View the code
+          <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>
+        </a>
+      </div>
+      <div class="mockwrap reveal">
+        <div class="mock tilt">
+          <div class="bar"><i></i><i></i><i></i><span class="url">youtube-summariser · architecture</span></div>
+          <div class="scene arch">
+            <div class="layer"><span class="k">Client</span><span class="v">React · TypeScript · Tailwind</span></div>
+            <div class="down">▼</div>
+            <div class="layer"><span class="k">API</span><span class="v">FastAPI · JWT · rate limiting</span></div>
+            <div class="down">▼</div>
+            <div class="layer hl"><span class="k">Provider interface</span><span class="v">one contract, concurrent calls</span></div>
+            <div class="provs"><span>Gemini</span><span>OpenAI</span><span>Anthropic</span><span>Local</span></div>
+            <div class="side">
+              <div><b>Long videos</b>map-reduce over transcript chunks</div>
+              <div><b>NLP</b>TF-IDF · NER · sentiment</div>
+            </div>
+            <div class="foot"><span class="chip2">PostgreSQL · SQLAlchemy</span><span class="chip2">84 offline tests</span><span class="chip2">Docker</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Charli's Café -->
+    <article class="project">
+      <div class="info reveal">
+        <div class="pnum">02 — MAR 2025</div>
         <h3>Charli's Café</h3>
-        <div class="role">Café website · Newport, Sydney · real client</div>
+        <div class="role">Café website · Newport, Sydney · paid client</div>
         <ul>
           <li>Designed and shipped the complete web presence for a working Northern Beaches café — menu, story, hours, the lot.</li>
-          <li>Brought more new faces through the door: the site turns local Google searches into counter orders and table bookings.</li>
-          <li>Hand-built, fast-loading frontend tuned for phones — where hungry people actually browse.</li>
+          <li>Requirements to production launch in under two months, working directly with the owner.</li>
+          <li>Custom CMS admin panel on an Express + MongoDB API, Cloudinary for images, bcrypt and role-based access for the admin side.</li>
+          <li>Mobile-first React frontend tuned for speed — compressed images, lazy loading, no render-blocking assets — because hungry people browse on their phones.</li>
         </ul>
-        <div class="tags"><span>Design → Launch</span><span>Responsive</span><span>Local SEO</span><span>Real business</span></div>
+        <div class="tags"><span>React</span><span>Redux Toolkit</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Cloudinary</span><span>Local SEO</span></div>
         <a class="plink" href="https://charliscafe.com.au" target="_blank" rel="noopener">Visit live site
           <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>
         </a>
@@ -709,12 +763,12 @@ footer a:hover{color:var(--lime)}
     <!-- Chunaab -->
     <article class="project">
       <div class="info reveal">
-        <div class="pnum">02 — JAN 2025</div>
+        <div class="pnum">03 — JAN 2025</div>
         <h3>Chunaab.com</h3>
         <div class="role">Online voting platform · solo build</div>
         <ul>
           <li>Secure election platform with real-time dashboards, live status updates and candidate management.</li>
-          <li>Tamper-proof voting backed by integrity-first backend logic and server-side automation.</li>
+          <li>Vote-integrity rules enforced on the server, not the browser, with server-side automation behind each election.</li>
           <li>Built-in payments — two free elections per user, then monetised.</li>
         </ul>
         <div class="tags"><span>MERN</span><span>Tailwind CSS</span><span>JWT</span><span>Payments</span><span>Render</span></div>
@@ -1057,9 +1111,9 @@ document.querySelectorAll('.mock').forEach(m=>mockIO.observe(m));
   const CATNAME = { frontend:'Frontend', backend:'Backend', data:'Data & Languages', flow:'Workflow' };
   const SKILLS = [
     ['React.js','frontend'],['Next.js','frontend'],['TypeScript','frontend'],['JavaScript','frontend'],['Tailwind CSS','frontend'],['Bootstrap','frontend'],
-    ['Node.js','backend'],['Express.js','backend'],['REST APIs','backend'],
-    ['MongoDB','data'],['SQL','data'],['Python','data'],
-    ['Git / GitHub','flow']
+    ['Node.js','backend'],['Express.js','backend'],['FastAPI','backend'],['REST APIs','backend'],['LLM APIs','backend'],
+    ['MongoDB','data'],['PostgreSQL','data'],['SQL','data'],['Python','data'],
+    ['Git / GitHub','flow'],['Docker','flow']
   ];
 
   let renderer;
